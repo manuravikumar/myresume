@@ -1,8 +1,8 @@
-name: "Terraform CI/CD with OpenTofu"
+name: "Terraform CI/CD with OpenTofu - Deployment"
 
 on:
   workflow_run:
-    workflows: ["Terraform CI/CD with OpenTofu"]  # Trigger this after the planning workflow is complete
+    workflows: ["Terraform CI/CD with OpenTofu - Planning"]  # Trigger this after the planning workflow is complete
     types:
       - completed
 
