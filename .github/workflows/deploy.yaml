@@ -1,0 +1,32 @@
+name: "Terraform CI/CD with OpenTofu"
+
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+
+jobs:
+  terraform:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Install OpenTofu
+        run: |
+          wget https://github.com/opentofu/opentofu/releases/latest/download/tofu-linux-amd64 -O tofu
+          chmod +x tofu
+          sudo mv tofu /usr/local/bin/
+
+      - name: Format Terraform Code
+        run: tofu fmt -recursive
+
+      - name: Initialize Terraform
+        run: tofu init -backend-config=terraform/backend.yaml
+
+      - name: Validate Terraform Configuration
+        run: tofu validate
+
+      - name: Plan Terraform Changes
+        run: tofu plan -out=tfplan
