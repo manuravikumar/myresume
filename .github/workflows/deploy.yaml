@@ -9,27 +9,36 @@ on:
 jobs:
   terraform:
     runs-on: ubuntu-latest
+
     steps:
-      - name: Checkout code
+      - name: Checkout repository
         uses: actions/checkout@v4
-      
+
       - name: Install OpenTofu
         run: |
           TOFU_VERSION="1.6.2"
           curl -LO "https://github.com/opentofu/opentofu/releases/download/v${TOFU_VERSION}/tofu_${TOFU_VERSION}_linux_amd64.zip"
           unzip -o tofu_${TOFU_VERSION}_linux_amd64.zip
           sudo mv tofu /usr/local/bin/tofu
-      
-      
 
-      - name: Format Terraform Code
+      - name: Format Terraform code
         run: tofu fmt -recursive
+        working-directory: terraform
 
       - name: Initialize Terraform
-        run: tofu init -backend-config=terraform/backend.yaml
+        run: tofu init -backend-config=backend.yaml
+        working-directory: terraform
 
-      - name: Validate Terraform Configuration
+      - name: Validate Terraform configuration
         run: tofu validate
+        working-directory: terraform
 
-      - name: Plan Terraform Changes
+      - name: Plan Terraform changes
         run: tofu plan -out=tfplan
+        working-directory: terraform
+
+      - name: Upload plan file as artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: terraform-plan
+          path: terraform/tfplan
