@@ -24,7 +24,7 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v4
         with:
-            repository: manuravikumar/myresume
+            token: ${{ secrets.GITHUB_TOKEN }}
 
       - name: Install OpenTofu
         run: |
