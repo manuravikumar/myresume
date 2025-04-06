@@ -8,7 +8,7 @@ resource "azurerm_resource_group" "resume" {
 }
 
 resource "azurerm_storage_account" "resume" {
-  name                     = "resumestorageacct"
+  name                     = "manuresumestorageacct"
   resource_group_name      = azurerm_resource_group.resume.name
   location                 = azurerm_resource_group.resume.location
   account_tier             = "Standard"

@@ -1,14 +1,25 @@
 name: "Terraform CI/CD with OpenTofu"
 
 on:
-  push:
-    branches:
-      - main
-  pull_request:
+  workflow_run:
+    workflows: ["Terraform CI/CD with OpenTofu"]  # Trigger this after the planning workflow is complete
+    types:
+      - completed
+
 permissions:
   id-token: write
+
 jobs:
+  approval:
+    runs-on: ubuntu-latest
+    steps:
+      - name: "Approval for Deployment"
+        run: |
+          echo "Deployment is pending approval."
+          # This step can be a manual review trigger, and you can insert instructions for approval if needed.
+  
   terraform:
+    needs: approval  # Ensure deploy only happens after approval
     runs-on: ubuntu-latest
 
     steps:
@@ -54,8 +65,8 @@ jobs:
         with:
           name: terraform-plan
           path: terraform/tfplan
-        
+
       - name: Apply Terraform changes
         run: |
-         tofu apply tfplan
+          tofu apply tfplan
         working-directory: terraform
