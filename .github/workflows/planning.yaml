@@ -1,4 +1,4 @@
-name: "Terraform CI/CD with OpenTofu"
+name: "Terraform CI/CD with OpenTofu - Planning"
 
 on:
   push:
