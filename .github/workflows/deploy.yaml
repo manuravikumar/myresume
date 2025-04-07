@@ -1,4 +1,4 @@
-name: "Terraform CI/CD with OpenTofu - Planning"
+name: "Terraform CI/CD with OpenTofu"
 
 on:
   push:
@@ -45,6 +45,10 @@ jobs:
       - name: Validate Terraform configuration
         run: tofu validate
         working-directory: terraform
+
+      - name: Delete existing Terraform plan
+        run: rm -f terraform/tfplan
+
 
       - name: Plan Terraform changes
         run: tofu plan -out=tfplan
