@@ -54,4 +54,4 @@ jobs:
         uses: actions/upload-artifact@v4
         with:
           name: terraform-plan
-          path: terraform/tfplan  # Ensure the path matches the location of your tfplan
+          path: terraform # Ensure the path matches the location of your tfplan
