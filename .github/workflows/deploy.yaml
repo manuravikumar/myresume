@@ -47,6 +47,15 @@ jobs:
       - name: listing file 
         run: ls -l terraform
 
+      - name: Re-initialize OpenTofu
+        run: tofu init -backend-config=backend.yaml
+        working-directory: terraform
+
+      - name: Plan Terraform changes
+        run: tofu plan -out=tfplan
+        working-directory: terraform
+
+
       - name: Apply Terraform changes
         run: |
           tofu apply terraform/tfplan
