@@ -42,13 +42,10 @@ jobs:
             name: terraform-plan
             run-id: ${{ github.event.workflow_run.id }}  # Reference the correct run ID
             github-token: ${{ secrets.GITHUB_TOKEN }}  # Provide the necessary token
-
-      - name: Move to Terraform directory
-        run: cd terraform
-        
+            path: terraform  # Ensure the path matches the location of your tfplan
 
 
       - name: Apply Terraform changes
         run: |
-          tofu apply tfplan  # Ensure the path is correct
+          tofu apply terraform-plan/tfplan 
         working-directory: terraform
