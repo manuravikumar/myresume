@@ -50,4 +50,4 @@ jobs:
       - name: Apply Terraform changes
         run: |
           tofu apply terraform-plan/tfplan
-        working-directory: terraform
+        
