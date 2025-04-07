@@ -8,7 +8,6 @@ on:
 permissions:
   id-token: write
 
-
 env:
   ARM_CLIENT_ID: ${{ secrets.AZURE_CLIENT_ID }}
   ARM_CLIENT_SECRET: ${{ secrets.AZURE_CLIENT_SECRET }}
@@ -18,7 +17,7 @@ env:
 jobs:
   terraform:
     runs-on: ubuntu-latest
-   
+
     steps:
       - name: Checkout repository
         uses: actions/checkout@v4
@@ -39,8 +38,20 @@ jobs:
         run: tofu init -backend-config=backend.yaml
         working-directory: terraform
 
-      - name: Download Terraform plan artifact
-        uses: actions/download-artifact@v4
+      - name: Format Terraform code
+        run: tofu fmt -recursive
+        working-directory: terraform
+
+      - name: Validate Terraform configuration
+        run: tofu validate
+        working-directory: terraform
+
+      - name: Plan Terraform changes
+        run: tofu plan -out=tfplan
+        working-directory: terraform
+
+      - name: Upload Terraform plan as artifact
+        uses: actions/upload-artifact@v4
         with:
           name: terraform-plan
-          path: terraform
+          path: terraform/tfplan  # Ensure the path matches the location of your tfplan
