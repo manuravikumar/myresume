@@ -49,5 +49,5 @@ jobs:
 
       - name: Apply Terraform changes
         run: |
-          tofu apply terraform-plan/tfplan
+          tofu apply terraform/tfplan
         
