@@ -42,6 +42,10 @@ jobs:
           name: terraform-plan
           path: terraform
 
+      - name: Unzip the Terraform plan artifact
+        run: |
+            unzip terraform/terraform-plan.zip -d terraform
+
       - name: Apply Terraform changes
         run: |
           tofu apply terraform/tfplan  # Ensure the path is correct
