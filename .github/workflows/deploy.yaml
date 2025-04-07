@@ -36,18 +36,14 @@ jobs:
           unzip -o tofu_${TOFU_VERSION}_linux_amd64.zip
           sudo mv tofu /usr/local/bin/tofu
 
-          - name: listing file 
-          run: ls -l terraform
-  
       - name: Re-initialize OpenTofu
         run: tofu init -backend-config=backend.yaml
         working-directory: terraform
-  
+
       - name: Plan Terraform changes
         run: tofu plan -out=tfplan
         working-directory: terraform
-        
+
       - name: Apply Terraform plan
         run: tofu apply terraform/tfplan
         working-directory: terraform
-  
