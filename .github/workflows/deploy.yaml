@@ -39,12 +39,11 @@ jobs:
       - name: Download Terraform plan artifact
         uses: actions/download-artifact@v4
         with:
-          name: terraform-plan
-          path: terraform
+            name: terraform-plan
+            run-id: ${{ github.event.workflow_run.id }}  # Reference the correct run ID
+            github-token: ${{ secrets.GITHUB_TOKEN }}  # Provide the necessary token
+        
 
-      - name: Unzip the Terraform plan artifact
-        run: |
-            unzip terraform/terraform-plan.zip -d terraform
 
       - name: Apply Terraform changes
         run: |
