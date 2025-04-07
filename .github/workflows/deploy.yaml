@@ -1,22 +1,18 @@
 name: "Terraform CI/CD with OpenTofu - Deployment"
 
 on:
-  workflow_dispatch:  # Manual trigger from GitHub UI
+  workflow_run:
+    workflows: ["Terraform CI/CD with OpenTofu - Planning"]
+    types:
+      - completed
 
 permissions:
   id-token: write
-  contents: read
-
-env:
-  ARM_CLIENT_ID: ${{ secrets.AZURE_CLIENT_ID }}
-  ARM_CLIENT_SECRET: ${{ secrets.AZURE_CLIENT_SECRET }}
-  ARM_SUBSCRIPTION_ID: ${{ secrets.AZURE_SUBSCRIPTION_ID }}
-  ARM_TENANT_ID: ${{ secrets.AZURE_TENANT_ID }}
 
 jobs:
   terraform:
     runs-on: ubuntu-latest
-   
+
     steps:
       - name: Checkout repository
         uses: actions/checkout@v4
@@ -33,10 +29,6 @@ jobs:
           unzip -o tofu_${TOFU_VERSION}_linux_amd64.zip
           sudo mv tofu /usr/local/bin/tofu
 
-      - name: Initialize Terraform with backend config
-        run: tofu init -backend-config=backend.yaml
-        working-directory: terraform
-
       - name: Download Terraform plan artifact
         uses: actions/download-artifact@v4
         with:
@@ -44,5 +36,6 @@ jobs:
           path: terraform
 
       - name: Apply Terraform changes
-        run: tofu apply tfplan
+        run: |
+          tofu apply terraform/tfplan  # Ensure the path is correct
         working-directory: terraform
