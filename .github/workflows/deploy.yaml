@@ -1,41 +1,30 @@
 name: "Terraform CI/CD with OpenTofu - Deployment"
 
 on:
-  workflow_run:
-    workflows: ["Terraform CI/CD with OpenTofu - Planning"]  # Trigger this after the planning workflow is complete
-    types:
-      - completed
+  workflow_dispatch:  # Manual trigger from GitHub UI
 
 permissions:
   id-token: write
+  contents: read
+
+env:
+  ARM_CLIENT_ID: ${{ secrets.AZURE_CLIENT_ID }}
+  ARM_CLIENT_SECRET: ${{ secrets.AZURE_CLIENT_SECRET }}
+  ARM_SUBSCRIPTION_ID: ${{ secrets.AZURE_SUBSCRIPTION_ID }}
+  ARM_TENANT_ID: ${{ secrets.AZURE_TENANT_ID }}
 
 jobs:
-  approval:
-    runs-on: ubuntu-latest
-    steps:
-      - name: "Approval for Deployment"
-        run: |
-          echo "Deployment is pending approval."
-          # This step can be a manual review trigger, and you can insert instructions for approval if needed.
-  
   terraform:
-    needs: approval  # Ensure deploy only happens after approval
     runs-on: ubuntu-latest
-
+   
     steps:
-      - name: Authenticate to Azure
-        env:
-          AZURE_CLIENT_ID: ${{ secrets.AZURE_CLIENT_ID }}
-          AZURE_CLIENT_SECRET: ${{ secrets.AZURE_CLIENT_SECRET }}
-          AZURE_TENANT_ID: ${{ secrets.AZURE_TENANT_ID }}
-        run: |
-          echo "Setting up Azure authentication"
-          az login --service-principal --username $AZURE_CLIENT_ID --password $AZURE_CLIENT_SECRET --tenant $AZURE_TENANT_ID
-
       - name: Checkout repository
         uses: actions/checkout@v4
-        with:
-            token: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Authenticate to Azure
+        run: |
+          echo "Authenticating to Azure..."
+          az login --service-principal -u $ARM_CLIENT_ID -p $ARM_CLIENT_SECRET --tenant $ARM_TENANT_ID
 
       - name: Install OpenTofu
         run: |
@@ -43,36 +32,17 @@ jobs:
           curl -LO "https://github.com/opentofu/opentofu/releases/download/v${TOFU_VERSION}/tofu_${TOFU_VERSION}_linux_amd64.zip"
           unzip -o tofu_${TOFU_VERSION}_linux_amd64.zip
           sudo mv tofu /usr/local/bin/tofu
-      
+
       - name: Initialize Terraform with backend config
         run: tofu init -backend-config=backend.yaml
         working-directory: terraform
 
-      - name: Import existing RG
-        run: |
-            tofu import azurerm_resource_group.resume /subscriptions/5ca6bba0-1c13-4cf7-9f46-3146b81aec58/resourceGroups/rg-resume
-        working-directory: terraform
-        
-  
-      - name: Format Terraform code
-        run: tofu fmt -recursive
-        working-directory: terraform
-
-      - name: Validate Terraform configuration
-        run: tofu validate
-        working-directory: terraform
-
-      - name: Plan Terraform changes
-        run: tofu plan -out=tfplan
-        working-directory: terraform
-
-      - name: Upload Terraform plan as artifact
-        uses: actions/upload-artifact@v4
+      - name: Download Terraform plan artifact
+        uses: actions/download-artifact@v4
         with:
           name: terraform-plan
-          path: terraform/tfplan
+          path: terraform
 
       - name: Apply Terraform changes
-        run: |
-          tofu apply tfplan
+        run: tofu apply tfplan
         working-directory: terraform

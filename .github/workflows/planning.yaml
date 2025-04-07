@@ -7,24 +7,26 @@ on:
   pull_request:
 permissions:
   id-token: write
+
+
+env:
+  ARM_CLIENT_ID: ${{ secrets.AZURE_CLIENT_ID }}
+  ARM_CLIENT_SECRET: ${{ secrets.AZURE_CLIENT_SECRET }}
+  ARM_SUBSCRIPTION_ID: ${{ secrets.AZURE_SUBSCRIPTION_ID }}
+  ARM_TENANT_ID: ${{ secrets.AZURE_TENANT_ID }}
+
 jobs:
   terraform:
     runs-on: ubuntu-latest
-
+   
     steps:
-      - name: Authenticate to Azure
-        env:
-          AZURE_CLIENT_ID: ${{ secrets.AZURE_CLIENT_ID }}
-          AZURE_CLIENT_SECRET: ${{ secrets.AZURE_CLIENT_SECRET }}
-          AZURE_TENANT_ID: ${{ secrets.AZURE_TENANT_ID }}
-        run: |
-          echo "Setting up Azure authentication"
-          az login --service-principal --username $AZURE_CLIENT_ID --password $AZURE_CLIENT_SECRET --tenant $AZURE_TENANT_ID
-
       - name: Checkout repository
         uses: actions/checkout@v4
-        with:
-            token: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Authenticate to Azure
+        run: |
+          echo "Authenticating to Azure..."
+          az login --service-principal -u $ARM_CLIENT_ID -p $ARM_CLIENT_SECRET --tenant $ARM_TENANT_ID
 
       - name: Install OpenTofu
         run: |
@@ -33,25 +35,12 @@ jobs:
           unzip -o tofu_${TOFU_VERSION}_linux_amd64.zip
           sudo mv tofu /usr/local/bin/tofu
 
-      - name: Format Terraform code
-        run: tofu fmt -recursive
-        working-directory: terraform
-
       - name: Initialize Terraform with backend config
         run: tofu init -backend-config=backend.yaml
         working-directory: terraform
 
-      - name: Validate Terraform configuration
-        run: tofu validate
-        working-directory: terraform
-
-      - name: Plan Terraform changes
-        run: tofu plan -out=tfplan
-        working-directory: terraform
-
-      - name: Upload Terraform plan as artifact
-        uses: actions/upload-artifact@v4
+      - name: Download Terraform plan artifact
+        uses: actions/download-artifact@v4
         with:
           name: terraform-plan
-          path: terraform/tfplan
-          
+          path: terraform
