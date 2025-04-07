@@ -45,7 +45,7 @@ jobs:
             path: terraform  # Ensure the path matches the location of your tfplan
 
       - name: listing file 
-        run: ls terraform/tfplan
+        run: ls -l terraform
 
       - name: Apply Terraform changes
         run: |
