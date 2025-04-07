@@ -45,5 +45,5 @@ jobs:
         working-directory: terraform
 
       - name: Apply Terraform plan
-        run: tofu apply terraform/tfplan
-        working-directory: terraform
+        run: tofu apply terraform-plan/tfplan
+  
