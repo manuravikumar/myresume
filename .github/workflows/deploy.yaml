@@ -44,6 +44,10 @@ jobs:
           unzip -o tofu_${TOFU_VERSION}_linux_amd64.zip
           sudo mv tofu /usr/local/bin/tofu
       
+      - name: Initialize Terraform with backend config
+        run: tofu init -backend-config=backend.yaml
+        working-directory: terraform
+
       - name: Import existing RG
         run: |
             tofu import azurerm_resource_group.resume /subscriptions/5ca6bba0-1c13-4cf7-9f46-3146b81aec58/resourceGroups/rg-resume
@@ -52,10 +56,6 @@ jobs:
   
       - name: Format Terraform code
         run: tofu fmt -recursive
-        working-directory: terraform
-
-      - name: Initialize Terraform with backend config
-        run: tofu init -backend-config=backend.yaml
         working-directory: terraform
 
       - name: Validate Terraform configuration
