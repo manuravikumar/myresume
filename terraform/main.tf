@@ -13,7 +13,11 @@ resource "azurerm_storage_account" "resume" {
   location                 = azurerm_resource_group.resume.location
   account_tier             = "Standard"
   account_replication_type = "LRS"
-  
+
+  static_website {
+    index_document     = "index.html"
+    
+  }
 }
 
 resource "azurerm_storage_blob" "index" {
