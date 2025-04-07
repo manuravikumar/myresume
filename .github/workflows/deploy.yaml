@@ -44,8 +44,10 @@ jobs:
             github-token: ${{ secrets.GITHUB_TOKEN }}  # Provide the necessary token
             path: terraform  # Ensure the path matches the location of your tfplan
 
+      - name: listing file 
+        run: ls terraform/tfplan
 
       - name: Apply Terraform changes
         run: |
-          tofu apply terraform-plan/tfplan 
+          tofu apply terraform/tfplan
         working-directory: terraform
