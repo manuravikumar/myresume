@@ -36,14 +36,6 @@ jobs:
           unzip -o tofu_${TOFU_VERSION}_linux_amd64.zip
           sudo mv tofu /usr/local/bin/tofu
 
-      - name: Download Terraform plan artifact
-        uses: actions/download-artifact@v4
-        with:
-            name: terraform-plan
-            run-id: ${{ github.event.workflow_run.id }}  # Reference the correct run ID
-            github-token: ${{ secrets.GITHUB_TOKEN }}  # Provide the necessary token
-            path: terraform  # Ensure the path matches the location of your tfplan
-
       - name: listing file 
         run: ls -l terraform
 
@@ -54,7 +46,20 @@ jobs:
       - name: Plan Terraform changes
         run: tofu plan -out=tfplan
         working-directory: terraform
+      
+      - name: Upload Terraform plan as artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: terraform-plan
+          path: terraform
 
+      - name: Download Terraform plan artifact
+        uses: actions/download-artifact@v4
+        with:
+              name: terraform-plan
+              run-id: ${{ github.event.workflow_run.id }}  # Reference the correct run ID
+              github-token: ${{ secrets.GITHUB_TOKEN }}  # Provide the necessary token
+              path: terraform  # Ensure the path matches the location of your tfplan
 
       - name: Apply Terraform changes
         run: |
