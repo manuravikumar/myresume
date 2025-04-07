@@ -50,5 +50,5 @@ jobs:
 
       - name: Apply Terraform changes
         run: |
-          tofu apply terraform/tfplan  # Ensure the path is correct
+          tofu apply tfplan  # Ensure the path is correct
         working-directory: terraform
