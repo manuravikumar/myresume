@@ -55,3 +55,6 @@ jobs:
         with:
           name: terraform-plan
           path: terraform # Ensure the path matches the location of your tfplan
+      
+      - name: Apply Terraform plan
+        run: tofu apply terraform/tfplan
