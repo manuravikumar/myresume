@@ -38,7 +38,7 @@ jobs:
         run: rm -f terraform/.terraform.lock.hcl
         working-directory: terraform
 
-        
+
       - name: Initialize Terraform with backend config
         run: tofu init -backend-config=backend.yaml
         working-directory: terraform
@@ -51,8 +51,6 @@ jobs:
         run: tofu validate
         working-directory: terraform
 
-      - name: Delete existing Terraform plan
-        run: rm -f terraform/tfplan
 
 
       - name: Plan Terraform changes
