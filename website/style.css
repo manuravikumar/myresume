@@ -91,4 +91,28 @@ body {
   .social-links a:first-child:hover {
     color: #333; /* GitHub gray */
   }
+  .social-links {
+  text-align: center;
+  margin-top: 40px;
+}
+
+.social-links a {
+  margin: 0 10px;
+  color: #333;
+  font-size: 28px;
+  transition: color 0.3s ease, transform 0.2s ease;
+}
+
+.social-links a:hover {
+  color: #0077b5; /* LinkedIn blue */
+  transform: scale(1.2);
+}
+
+.social-links a:first-child:hover {
+  color: #333; /* GitHub gray */
+}
+
+h1 {
+    color: white;
+  }
   
