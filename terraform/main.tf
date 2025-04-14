@@ -41,7 +41,7 @@ resource "azurerm_storage_blob" "about" {
   source                 = "../website/about.html"
   content_type           = "text/html"
 }
-resource "azurerm_storage_blob" "resume" {
+resource "azurerm_storage_blob" "resumes" {
   name                   = "index.html"
   storage_account_name   = azurerm_storage_account.resume.name
   storage_container_name = "$web"
