@@ -31,15 +31,18 @@ resource "azurerm_storage_blob" "index" {
   storage_container_name = "$web"
   type                   = "Block"
   source                 = "../website/index.html"
+  content_type           = "text/html"  # Set the MIME type for HTML
 }
 
-resource "azurerm_storage_blob" "index" {
-  name                   = "index.html"
+resource "azurerm_storage_blob" "style" {
+  name                   = "style.css"
   storage_account_name   = azurerm_storage_account.resume.name
   storage_container_name = "$web"
   type                   = "Block"
-  source                 = "../website/style.css"
+  source                 = "../website/style.css"  # Path to your local file
+  content_type           = "text/css"  # Set the MIME type for CSS
 }
+
 
 output "website_url" {
   value = azurerm_storage_account.resume.primary_web_endpoint
