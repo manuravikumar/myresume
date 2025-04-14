@@ -33,10 +33,20 @@ jobs:
           curl -LO "https://github.com/opentofu/opentofu/releases/download/v${TOFU_VERSION}/tofu_${TOFU_VERSION}_linux_amd64.zip"
           unzip -o tofu_${TOFU_VERSION}_linux_amd64.zip
           sudo mv tofu /usr/local/bin/tofu
-    
 
       - name: Initialize Terraform with backend config
         run: tofu init -backend-config=backend.yaml
+        working-directory: terraform
+
+      - name: Import existing Resource Group if needed
+        run: |
+          echo "Checking if resource group 'rg-resume' is already in state..."
+          if ! tofu state list | grep -q "azurerm_resource_group.rg"; then
+            echo "Importing resource group..."
+            tofu import azurerm_resource_group.rg "/subscriptions/${ARM_SUBSCRIPTION_ID}/resourceGroups/rg-resume"
+          else
+            echo "Resource group already in state."
+          fi
         working-directory: terraform
 
       - name: Format Terraform code
@@ -47,8 +57,6 @@ jobs:
         run: tofu validate
         working-directory: terraform
 
-
-
       - name: Plan Terraform changes
         run: tofu plan -out=tfplan
         working-directory: terraform
@@ -57,9 +65,8 @@ jobs:
         uses: actions/upload-artifact@v4
         with:
           name: terraform-plan
-          path: terraform # Ensure the path matches the location of your tfplan
-      
+          path: terraform
+
       - name: Apply Terraform changes
         run: tofu apply -auto-approve
         working-directory: terraform
-        
