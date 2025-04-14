@@ -38,6 +38,10 @@ jobs:
       - name: Initialize Terraform with backend config
         run: tofu init -backend-config=backend.yaml
         working-directory: terraform
+      
+      - name: import
+        run: tofu import azurerm_resource_group.rg "/subscriptions/5ca6bba0-1c13-4cf7-9f46-3146b81aec58/resourceGroups/rg-resume"
+
 
       - name: Format Terraform code
         run: tofu fmt -recursive
