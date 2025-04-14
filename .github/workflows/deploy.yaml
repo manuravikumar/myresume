@@ -39,8 +39,11 @@ jobs:
         run: tofu init -backend-config=backend.yaml
         working-directory: terraform
       
-      - name: import
-        run: tofu import azurerm_resource_group.rg "/subscriptions/5ca6bba0-1c13-4cf7-9f46-3146b81aec58/resourceGroups/rg-resume"
+      - name: Import existing Resource Group
+        run: |
+          tofu import azurerm_resource_group.rg "/subscriptions/${ARM_SUBSCRIPTION_ID}/resourceGroups/rg-resume"
+        working-directory: terraform
+      
 
 
       - name: Format Terraform code
