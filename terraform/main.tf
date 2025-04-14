@@ -66,7 +66,58 @@ resource "azurerm_storage_blob" "script" {
   source                 = "../website/script.js"  # Path to your local file
   content_type           = "application/script"  # Set the MIME type for CSS
 }
+resource "null_resource" "upload_static_assets" {
+  triggers = {
+    index_hash  = filesha256("../website/index.html")
+    about_hash  = filesha256("../website/about.html")
+    resume_hash = filesha256("../website/resume.html")
+    style_hash  = filesha256("../website/style.css")
+    script_hash = filesha256("../website/script.js")
+  }
 
+  provisioner "local-exec" {
+    command = <<EOT
+      az storage blob upload --account-name ${azurerm_storage_account.resume.name} \
+        --container-name \$web \
+        --file ../website/index.html \
+        --name index.html \
+        --content-type "text/html" \
+        --overwrite
+
+      az storage blob upload --account-name ${azurerm_storage_account.resume.name} \
+        --container-name \$web \
+        --file ../website/about.html \
+        --name about.html \
+        --content-type "text/html" \
+        --overwrite
+
+      az storage blob upload --account-name ${azurerm_storage_account.resume.name} \
+        --container-name \$web \
+        --file ../website/resume.html \
+        --name resume.html \
+        --content-type "text/html" \
+        --overwrite
+
+      az storage blob upload --account-name ${azurerm_storage_account.resume.name} \
+        --container-name \$web \
+        --file ../website/style.css \
+        --name style.css \
+        --content-type "text/css" \
+        --overwrite
+
+      az storage blob upload --account-name ${azurerm_storage_account.resume.name} \
+        --container-name \$web \
+        --file ../website/script.js \
+        --name script.js \
+        --content-type "application/javascript" \
+        --overwrite
+    EOT
+  }
+
+  depends_on = [
+    azurerm_storage_account.resume
+  ]
+}
 
 output "website_url" {
   value = azurerm_storage_account.resume.primary_web_endpoint
