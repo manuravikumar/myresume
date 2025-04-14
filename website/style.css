@@ -132,4 +132,52 @@ h1 {
   .navbar a:hover {
     color: #00bcd4;
   }
+  .hero {
+    padding: 80px 20px;
+    text-align: center;
+    color: white;
+    background: linear-gradient(to right, #1c1c1c, #2a2a2a);
+  }
+  
+  .hero h1 {
+    font-size: 3rem;
+    margin-bottom: 10px;
+  }
+  
+  .subtitle {
+    font-size: 1.5rem;
+    color: #00bcd4;
+    margin-bottom: 20px;
+  }
+  
+  .hero-buttons .btn,
+  .hero-buttons .btn-secondary {
+    padding: 12px 24px;
+    margin: 10px;
+    border: none;
+    border-radius: 8px;
+    font-size: 16px;
+    text-decoration: none;
+    transition: 0.3s ease;
+  }
+  
+  .hero-buttons .btn {
+    background-color: #00bcd4;
+    color: white;
+  }
+  
+  .hero-buttons .btn:hover {
+    background-color: #0097a7;
+  }
+  
+  .hero-buttons .btn-secondary {
+    background-color: transparent;
+    color: #00bcd4;
+    border: 2px solid #00bcd4;
+  }
+  
+  .hero-buttons .btn-secondary:hover {
+    background-color: #00bcd4;
+    color: white;
+  }
   
