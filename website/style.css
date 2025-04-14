@@ -180,4 +180,30 @@ h1 {
     background-color: #00bcd4;
     color: white;
   }
+  .about-section {
+    padding: 60px 20px;
+    background-color: #1c1c1c;
+    color: white;
+  }
+  
+  .about-section .container {
+    max-width: 800px;
+    margin: 0 auto;
+  }
+  
+  .about-section h1,
+  .about-section h2 {
+    color: #00bcd4;
+    margin-bottom: 20px;
+  }
+  
+  .about-section ul {
+    list-style-type: disc;
+    padding-left: 20px;
+    margin-bottom: 40px;
+  }
+  
+  .about-section li {
+    margin-bottom: 10px;
+  }
   
