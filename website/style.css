@@ -189,6 +189,7 @@ h1 {
   .about-section .container {
     max-width: 800px;
     margin: 0 auto;
+    background: black;
   }
   
   .about-section h1,
