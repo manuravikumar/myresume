@@ -33,11 +33,7 @@ jobs:
           curl -LO "https://github.com/opentofu/opentofu/releases/download/v${TOFU_VERSION}/tofu_${TOFU_VERSION}_linux_amd64.zip"
           unzip -o tofu_${TOFU_VERSION}_linux_amd64.zip
           sudo mv tofu /usr/local/bin/tofu
-      
-      - name: remove lock file
-        run: rm -f terraform/.terraform.lock.hcl
-        working-directory: terraform
-
+    
 
       - name: Initialize Terraform with backend config
         run: tofu init -backend-config=backend.yaml
