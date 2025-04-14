@@ -180,6 +180,10 @@ h1 {
     background-color: #00bcd4;
     color: white;
   }
+    .projects-section {
+        padding: 60px 20px;
+        background-color: #f4f4f4;
+    }
   .about-section {
     padding: 60px 20px;
     background-color: #1c1c1c;
