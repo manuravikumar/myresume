@@ -42,7 +42,7 @@ resource "azurerm_storage_blob" "about" {
   content_type           = "text/html"
 }
 resource "azurerm_storage_blob" "resumes" {
-  name                   = "index.html"
+  name                   = "resume.html"
   storage_account_name   = azurerm_storage_account.resume.name
   storage_container_name = "$web"
   type                   = "Block"
