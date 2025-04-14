@@ -33,7 +33,22 @@ resource "azurerm_storage_blob" "index" {
   source                 = "../website/index.html"
   content_type           = "text/html"
 }
-
+resource "azurerm_storage_blob" "about" {
+  name                   = "about.html"
+  storage_account_name   = azurerm_storage_account.resume.name
+  storage_container_name = "$web"
+  type                   = "Block"
+  source                 = "../website/about.html"
+  content_type           = "text/html"
+}
+resource "azurerm_storage_blob" "resume" {
+  name                   = "index.html"
+  storage_account_name   = azurerm_storage_account.resume.name
+  storage_container_name = "$web"
+  type                   = "Block"
+  source                 = "../website/resume.html"
+  content_type           = "text/html"
+}
 resource "azurerm_storage_blob" "style" {
   name                   = "style.css"
   storage_account_name   = azurerm_storage_account.resume.name
