@@ -43,6 +43,15 @@ resource "azurerm_storage_blob" "style" {
   content_type           = "text/css"  # Set the MIME type for CSS
 }
 
+resource "azurerm_storage_blob" "script" {
+  name                   = "script.js"
+  storage_account_name   = azurerm_storage_account.resume.name
+  storage_container_name = "$web"
+  type                   = "Block"
+  source                 = "../website/script.js"  # Path to your local file
+  content_type           = "text/script"  # Set the MIME type for CSS
+}
+
 
 output "website_url" {
   value = azurerm_storage_account.resume.primary_web_endpoint
