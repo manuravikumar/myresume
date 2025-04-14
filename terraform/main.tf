@@ -49,7 +49,7 @@ resource "azurerm_storage_blob" "script" {
   storage_container_name = "$web"
   type                   = "Block"
   source                 = "../website/script.js"  # Path to your local file
-  content_type           = "text/script"  # Set the MIME type for CSS
+  content_type           = "application/script"  # Set the MIME type for CSS
 }
 
 
