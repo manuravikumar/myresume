@@ -90,6 +90,39 @@ resource "azurerm_storage_blob" "linkedlogo" {
   source                 = "../website/linkedin-logo.png"  # Path to your local image file
   content_type           = "image/png"            # MIME type for PNG image
 }
+resource "azurerm_storage_blob" "azurelogo" {
+  name                   = "azure.png"
+  storage_account_name   = azurerm_storage_account.resume.name
+  storage_container_name = "$web"
+  type                   = "Block"
+  source                 = "../website/azure.png"  # Path to your local image file
+  content_type           = "image/png"            # MIME type for PNG image
+}
+resource "azurerm_storage_blob" "awslogo" {
+  name                   = "aws.png"
+  storage_account_name   = azurerm_storage_account.resume.name
+  storage_container_name = "$web"
+  type                   = "Block"
+  source                 = "../website/aws.png"  # Path to your local image file
+  content_type           = "image/png"            # MIME type for PNG image
+}
+resource "azurerm_storage_blob" "cybercxlogo" {
+  name                   = "cybercx.png"
+  storage_account_name   = azurerm_storage_account.resume.name
+  storage_container_name = "$web"
+  type                   = "Block"
+  source                 = "../website/cybercx.png"  # Path to your local image file
+  content_type           = "image/png"               # MIME type for PNG image
+}
+resource "azurerm_storage_blob" "terraformlogo" {
+  name                   = "terraform.png"
+  storage_account_name   = azurerm_storage_account.resume.name
+  storage_container_name = "$web"
+  type                   = "Block"
+  source                 = "../website/terraform.png"  # Path to your local image file
+  content_type           = "image/png"                  # MIME type for PNG image
+}
+
 resource "null_resource" "upload_static_assets" {
   triggers = {
     index_hash  = filesha256("../website/index.html")
