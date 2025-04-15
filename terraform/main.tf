@@ -97,7 +97,6 @@ resource "null_resource" "upload_static_assets" {
     resume_hash = filesha256("../website/resume.html")
     style_hash  = filesha256("../website/style.css")
     script_hash = filesha256("../website/script.js")
-    image_hash  = filesha256("../website/profile.jpeg")
   }
 
   provisioner "local-exec" {
@@ -137,12 +136,6 @@ resource "null_resource" "upload_static_assets" {
         --content-type "application/javascript" \
         --overwrite
 
-      az storage blob upload --account-name ${azurerm_storage_account.resume.name} \
-        --container-name \$web \
-        --file ../website/profile.jpeg \
-        --name profile.jpeg \
-        --content-type "image/jpeg" \
-        --overwrite
     EOT
   }
 

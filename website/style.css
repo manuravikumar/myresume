@@ -85,7 +85,7 @@ body {
     list-style-type: square;
     padding-left: 1rem;
   }
-  
+
   footer {
     background-color: #f0f0f0;
     padding: 20px 0;
@@ -119,6 +119,17 @@ body {
     vertical-align: middle;
   }  
   
+  header {
+  text-align: center;
+  padding: 20px 0;
+  background-color: #f9f9f9; /* optional, just to make header pop */
+}
+
+.header-title {
+  margin: 0;
+  font-size: 2em;
+}
+
   @keyframes fadeIn {
     from { opacity: 0; }
     to { opacity: 1; }
