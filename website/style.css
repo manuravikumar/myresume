@@ -1,214 +1,109 @@
+/* style.css */
 body {
-    font-family: 'Roboto', sans-serif;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background: #f4f4f9;
+    color: #333;
     margin: 0;
     padding: 0;
-    background: #f4f4f4;
-    color: #333;
+    animation: fadeIn 1s ease-in;
   }
   
-  header {
-    background: #004aad;
+  nav {
+    background: #1f2a38;
+    padding: 1rem;
+    display: flex;
+    justify-content: center;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+  }
+  
+  nav ul {
+    list-style: none;
+    display: flex;
+    gap: 2rem;
+    margin: 0;
+    padding: 0;
+  }
+  
+  nav a {
     color: white;
-    padding: 2rem;
+    text-decoration: none;
+    font-weight: bold;
+  }
+  
+  nav a:hover {
+    color: #1abc9c;
+  }
+  
+  .hero {
+    background: linear-gradient(120deg, #2c3e50, #34495e);
+    color: white;
+    padding: 4rem 2rem;
     text-align: center;
   }
   
-  .container {
-    max-width: 1000px;
+  .hero-content {
+    max-width: 600px;
     margin: auto;
+  }
+  
+  .profile-pic {
+    width: 120px;
+    border-radius: 50%;
+    border: 3px solid white;
+    margin-bottom: 1rem;
+  }
+  
+  main {
     padding: 2rem;
-    background: white;
+    max-width: 900px;
+    margin: auto;
   }
   
-  h2 {
-    color: #004aad;
+  section.highlight {
+    background: #ffffff;
+    padding: 2rem;
+    border-radius: 12px;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+    margin-top: 2rem;
   }
   
-  section {
-    margin-bottom: 2rem;
+  section.resume-section {
+    background: #fff;
+    margin: 2rem 0;
+    padding: 2rem;
+    border-left: 4px solid #1abc9c;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+    border-radius: 8px;
   }
   
-  ul {
-    list-style-type: disc;
-    padding-left: 1.5rem;
+  .resume-entry {
+    margin-bottom: 1.5rem;
+  }
+  
+  .skills {
+    columns: 2;
+    list-style-type: square;
+    padding-left: 1rem;
   }
   
   footer {
-    background: #004aad;
+    background: #1f2a38;
     color: white;
     text-align: center;
     padding: 1rem;
-    position: fixed;
-    width: 100%;
-    bottom: 0;
   }
   
-  
-
-@keyframes fadeIn {
-    0% { opacity: 0; transform: translateY(20px); }
-    100% { opacity: 1; transform: translateY(0); }
-  }
-  
-  .animate-fade {
-    opacity: 0;
-    animation: fadeIn 0.8s ease-out forwards;
-  }
-  
-  section {
-    margin-bottom: 2rem;
-    opacity: 0;
-    transform: translateY(20px);
-    transition: all 0.6s ease-out;
-  }
-  
-  section.visible {
-    opacity: 1;
-    transform: translateY(0);
-  }
-  
-  h2:hover {
-    color: #007bff;
-    transition: color 0.3s ease-in-out;
-  }
-  .social-links {
-    text-align: center;
-    margin-top: 40px;
-  }
-  
-  .social-links a {
+  footer a {
+    color: #1abc9c;
+    text-decoration: none;
     margin: 0 10px;
-    color: #333;
-    font-size: 28px;
-    transition: color 0.3s ease, transform 0.2s ease;
   }
   
-  .social-links a:hover {
-    color: #0077b5; /* LinkedIn blue */
-    transform: scale(1.2);
+  footer a:hover {
+    text-decoration: underline;
   }
   
-  .social-links a:first-child:hover {
-    color: #333; /* GitHub gray */
+  @keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
   }
-  .social-links {
-  text-align: center;
-  margin-top: 40px;
-}
-
-.social-links a {
-  margin: 0 10px;
-  color: #333;
-  font-size: 28px;
-  transition: color 0.3s ease, transform 0.2s ease;
-}
-
-.social-links a:hover {
-  color: #0077b5; /* LinkedIn blue */
-  transform: scale(1.2);
-}
-
-.social-links a:first-child:hover {
-  color: #333; /* GitHub gray */
-}
-
-h1 {
-    color: white;
-  }
-  .navbar {
-    background-color: #222;
-    padding: 15px 0;
-    text-align: center;
-  }
-  
-  .navbar a {
-    color: white;
-    text-decoration: none;
-    margin: 0 20px;
-    font-size: 18px;
-    transition: color 0.3s ease;
-  }
-  
-  .navbar a:hover {
-    color: #00bcd4;
-  }
-  .hero {
-    padding: 80px 20px;
-    text-align: center;
-    color: white;
-    background: linear-gradient(to right, #1c1c1c, #2a2a2a);
-  }
-  
-  .hero h1 {
-    font-size: 3rem;
-    margin-bottom: 10px;
-  }
-  
-  .subtitle {
-    font-size: 1.5rem;
-    color: #00bcd4;
-    margin-bottom: 20px;
-  }
-  
-  .hero-buttons .btn,
-  .hero-buttons .btn-secondary {
-    padding: 12px 24px;
-    margin: 10px;
-    border: none;
-    border-radius: 8px;
-    font-size: 16px;
-    text-decoration: none;
-    transition: 0.3s ease;
-  }
-  
-  .hero-buttons .btn {
-    background-color: #00bcd4;
-    color: white;
-  }
-  
-  .hero-buttons .btn:hover {
-    background-color: #0097a7;
-  }
-  
-  .hero-buttons .btn-secondary {
-    background-color: transparent;
-    color: #00bcd4;
-    border: 2px solid #00bcd4;
-  }
-  
-  .hero-buttons .btn-secondary:hover {
-    background-color: #00bcd4;
-    color: white;
-  }
-    .projects-section {
-        padding: 60px 20px;
-        background-color: #f4f4f4;
-    }
-    .about-section {
-        padding: 60px 20px;
-        background-color: #1c1c1c;
-        color: white; /* changed from black */
-      }
-      
-      .about-section .container {
-        background-color: #121212;
-        padding: 20px;
-        border-radius: 10px;
-      }
-  
-  .about-section h1,
-  .about-section h2 {
-    color: #00bcd4;
-    margin-bottom: 20px;
-  }
-  
-  .about-section ul {
-    list-style-type: disc;
-    padding-left: 20px;
-    margin-bottom: 40px;
-  }
-  
-  .about-section li {
-    margin-bottom: 10px;
-  }
-  
