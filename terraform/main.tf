@@ -122,6 +122,23 @@ resource "azurerm_storage_blob" "terraformlogo" {
   source                 = "../website/terraform.png"  # Path to your local image file
   content_type           = "image/png"                  # MIME type for PNG image
 }
+resource "azurerm_storage_blob" "entraidlogo" {
+  name                   = "entra-id.png"
+  storage_account_name   = azurerm_storage_account.resume.name
+  storage_container_name = "$web"
+  type                   = "Block"
+  source                 = "../website/entra-id.png"  # Path to your local image file
+  content_type           = "image/png"                  # MIME type for PNG image
+}
+resource "azurerm_storage_blob" "azuresso" {
+  name                   = "azure-sso.png"
+  storage_account_name   = azurerm_storage_account.resume.name
+  storage_container_name = "$web"
+  type                   = "Block"
+  source                 = "../website/azure-sso.png"  # Path to your local image file
+  content_type           = "image/png"                  # MIME type for PNG image
+}
+
 
 resource "null_resource" "upload_static_assets" {
   triggers = {
