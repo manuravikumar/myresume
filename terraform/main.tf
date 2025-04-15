@@ -66,6 +66,14 @@ resource "azurerm_storage_blob" "script" {
   source                 = "../website/script.js"  # Path to your local file
   content_type           = "application/script"  # Set the MIME type for CSS
 }
+resource "azurerm_storage_blob" "image" {
+  name                   = "profile.jpeg"
+  storage_account_name   = azurerm_storage_account.resume.name
+  storage_container_name = "$web"
+  type                   = "Block"
+  source                 = "../website/profile.jpeg"  # Path to your local image file
+  content_type           = "image/jpeg"            # MIME type for PNG image
+}
 resource "null_resource" "upload_static_assets" {
   triggers = {
     index_hash  = filesha256("../website/index.html")
