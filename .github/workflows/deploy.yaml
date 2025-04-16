@@ -65,3 +65,9 @@ jobs:
         run: tofu apply -auto-approve
         working-directory: terraform
         
+      - name: Upload Static Website Files
+        run: |
+          chmod +x ./deploy.sh
+          ./deploy.sh
+        env:
+          AZURE_STORAGE_KEY: ${{ secrets.AZURE_STORAGE_KEY }}
