@@ -207,7 +207,7 @@ body {
   /*funky fonts and animation*/
 
   @import url('https://fonts.googleapis.com/css2?family=Pacifico&family=Rubik+Glitch&display=swap');
-  @import url('https://fonts.googleapis.com/css2?family=Orbitron&display=swap');
+  @import url('https://fonts.googleapis.com/css2?family=VT323&display=swap');
 
 .funky-intro {
   text-align: center;
@@ -225,7 +225,7 @@ body {
 }
 
 .funky-intro p {
-  font-family: 'Orbitron', sans-serif;
+  font-family: 'VT323', monospace;
   font-size: 1.3rem;
   color: #333;
   margin-top: 20px;
