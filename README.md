@@ -1,5 +1,5 @@
 # myresume
-Welcome to **myresume**! This project is designed to help you create and manage your professional resume with ease.
+Welcome to **myresume**! This project is designed to help you get to know about me and the tech i use.
 
 ## Features
 - Create a professional resume in minutes.
