@@ -207,6 +207,7 @@ body {
   /*funky fonts and animation*/
 
   @import url('https://fonts.googleapis.com/css2?family=Pacifico&family=Rubik+Glitch&display=swap');
+  @import url('https://fonts.googleapis.com/css2?family=Orbitron&display=swap');
 
 .funky-intro {
   text-align: center;
@@ -224,12 +225,13 @@ body {
 }
 
 .funky-intro p {
-  font-family: 'Roboto';
+  font-family: 'Orbitron', sans-serif;
   font-size: 1.3rem;
   color: #333;
   margin-top: 20px;
   animation: fadeIn 2s ease-in-out;
 }
+
 
 /* Animations */
 @keyframes fadeSlideIn {
