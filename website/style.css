@@ -201,8 +201,8 @@ body {
 
   .btn {
     display: inline-block;
-    padding: 12px 24px;
-    font-size: 1rem;
+    padding: 8px 16px; /* reduced from 12px 24px */
+    font-size: 0.9rem;  /* slightly smaller text */
     font-weight: 600;
     text-align: center;
     text-decoration: none;
@@ -211,6 +211,7 @@ body {
     cursor: pointer;
     border: none;
   }
+  
   
   .btn-primary {
     background-color: #75a5d8; /* Bootstrap-like blue */
