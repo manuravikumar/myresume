@@ -33,18 +33,37 @@ body {
   nav a:hover {
     color: #1abc9c;
   }
-  
+
   .hero {
-    background: linear-gradient(120deg, #2c3e50, #34495e);
-    color: white;
-    padding: 4rem 2rem;
+    background-image: url('images/background.png'); /* replace with your image */
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    padding: 60px 20px;
+    color: white; /* or another color for better contrast */
     text-align: center;
+    position: relative;
+  }
+  
+  /* Optional: Add a dark overlay for readability */
+  .hero::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(0, 0, 0, 0.4); /* adjust transparency */
+    z-index: 0;
   }
   
   .hero-content {
-    max-width: 600px;
-    margin: auto;
+    position: relative;
+    z-index: 1;
   }
+  
+
+
   
   .profile-pic {
     width: 120px;
