@@ -201,17 +201,26 @@ body {
 
   .btn {
     display: inline-block;
-    padding: 8px 16px; /* reduced from 12px 24px */
-    font-size: 0.9rem;  /* slightly smaller text */
+    padding: 8px 16px;
+    font-size: 0.9rem;
     font-weight: 600;
     text-align: center;
     text-decoration: none;
-    border-radius: 6px;
-    transition: background-color 0.3s ease, transform 0.2s ease;
+    border-radius: 999px;
+    background: rgba(255, 255, 255, 0.1); /* translucent background */
+    color: #fff;
+    backdrop-filter: blur(10px); /* blur behind it */
+    -webkit-backdrop-filter: blur(10px); /* safari support */
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+    transition: all 0.3s ease;
     cursor: pointer;
-    border: none;
   }
   
+  .btn:hover {
+    background: rgba(255, 255, 255, 0.2);
+    transform: translateY(-2px);
+  }
   
   .btn-primary {
     background-color: #75a5d8; /* Bootstrap-like blue */
