@@ -173,27 +173,31 @@ body {
     margin-bottom: 0.5rem;
   }
   .tech-stack {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
-    gap: 30px;
     max-width: 1000px;
     margin: 0 auto 80px;
     padding: 0 20px;
   }
 
   .techs-item {
-    background-color: white;
-    border-radius: 12px;
-    padding: 20px;
-    text-align: center;
-    box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+    display: block;
+    text-align: left;
   }
 
   .techs-item img {
-    height: 50px;
-    margin-bottom: 10px;
+    max-width: 50px;
+    vertical-align: middle;
+    margin-right: 10px;
   }
-
+  .techs-item p:first-of-type {
+    display: inline;
+    font-weight: bold;
+    font-size: 1.2rem;
+  }
+  
+  .techs-item p:last-of-type {
+    margin-top: 10px;
+    line-height: 1.6;
+  }
   @keyframes fadeIn {
     from { opacity: 0; }
     to { opacity: 1; }
