@@ -212,7 +212,7 @@ body {
 .funky-intro {
   text-align: center;
   max-width: 800px;
-  margin: 60px auto;
+  margin: 50px auto;
   padding: 0 20px;
   animation: fadeSlideIn 1s ease-out;
 }
@@ -226,7 +226,7 @@ body {
 
 .funky-intro p {
   font-family: 'VT323', monospace;
-  font-size: 1.3rem;
+  font-size: 1.0rem;
   color: #333;
   margin-top: 20px;
   animation: fadeIn 2s ease-in-out;
