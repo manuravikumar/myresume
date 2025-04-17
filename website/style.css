@@ -96,6 +96,10 @@ body {
     position: relative;
     z-index: 1;
   }
+
+  .her-content p {
+    font-family:'VT323', monospace;
+  }
   
 
 
