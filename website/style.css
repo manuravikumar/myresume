@@ -79,7 +79,9 @@ body {
     text-align: center;
     position: relative;
   }
-  
+ 
+  @import url('https://fonts.googleapis.com/css2?family=VT323&display=swap');
+
   /* Optional: Add a dark overlay for readability */
   .hero::before {
     content: '';
