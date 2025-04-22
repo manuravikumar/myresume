@@ -364,6 +364,12 @@ body {
   color: white;
 }
 
+.tab-btn.aws:hover,
+.tab-btn.aws.active {
+  background-color: #f59e0b; /* amber yellow */
+  color: white;
+}
+
 .tab-content {
   display: none;
   text-align: center;
