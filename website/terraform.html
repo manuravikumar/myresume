@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Cloud Engineer | About</title>
+  <link rel="stylesheet" href="style.css">
+  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@500&display=swap" rel="stylesheet">
+<!-- Font Awesome for Icons -->
+ <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+  <script defer src="script.js"></script>
+</head>
+<body>
+  <nav>
+    <ul>
+      <li><a href="index.html"><i class="fas fa-house"></i> Home</a></li>
+      <li><a href="about.html"><i class="fas fa-briefcase"></i> Portfolio</a></li>
+      <li><a href="resume.html"><i class="fas fa-file-lines"></i> Resume</a></li>
+    </ul>
+  </nav>
+  <header class="hero">
+    <div class="hero-content">
+      <img src="images/profile.jpg" alt="Profile picture of Manu" class="profile-pic">
+      <h1>Hi, I'm Manu – Cloud Engineer</h1>
+      <p>Designing scalable, secure, and automated cloud solutions.</p>
+    </div>
+  </header>
+  <main class="content-section">
+    <section class="section-header">
+      <h2><i class="fas fa-code"></i> Terraform IaC Expertise</h2>
+      <p>Tap into focused topics below to explore specific areas of my work in Terraform .</p>
+    </section>
+  
+    <div class="tab-container">
+      <div class="tab-buttons">
+        <button class="tab-btn active" data-tab="tab1">Terraform</button>
+        <button class="tab-btn" data-tab="tab2">OpenTofu</button>
+      </div>
+      <div class="tab-content" id="tab1">
+        <i class="fas fa-cubes"></i>
+        <h3>Terraform on Azure</h3>
+        <p>Scalable, secure, and automated Azure infrastructure using Terraform and OpenTofu.</p>
+        <ul class="tab-list">
+          <li>Developed and maintained <strong>infrastructure-as-code (IaC)</strong> using <strong>Terraform</strong> and <strong>OpenTofu</strong> for Azure resource automation.</li>
+          <li>Provisioned <strong>Virtual Machines, App Services, AKS, Cosmos DB, VNets</strong>, and <strong>NSGs</strong> using modular and reusable Terraform code.</li>
+          <li>Integrated with <strong>GitHub Actions</strong> to create CI/CD pipelines for <strong>validation, planning, and deployment</strong> of infrastructure changes.</li>
+          <li>Used <strong>remote backend with Azure Storage</strong> and state locking for collaborative and secure state file management.</li>
+          <li>Implemented <strong>RBAC, tagging, and naming conventions</strong> through modules to support governance and scalability.</li>
+          <li>Managed secrets and sensitive variables via <strong>Azure Key Vault</strong> and <strong>GitHub Secrets</strong> for enhanced security and traceability.</li>
+          <li>Utilized <strong>workspaces and parameterized variables</strong> for consistent <strong>multi-environment deployments</strong> (dev/test/prod).</li>
+          <li>Enforced standards with <strong>terraform fmt, validate, and plan</strong> checks during PR reviews and CI workflows.</li>
+        </ul>
+      </div>
+      <div class="tab-content" id="tab2">
+        <i class="fas fa-code-branch"></i>
+        <h3>OpenTofu (Terraform Fork)</h3>
+        <p>Community-driven, license-free alternative to Terraform for infrastructure automation on Azure.</p>
+        <ul class="tab-list">
+          <li>Leveraged <strong>OpenTofu</strong> to provision Azure infrastructure while maintaining compatibility with existing Terraform modules.</li>
+          <li>Benefited from <strong>open governance</strong>, transparent development, and community contributions through OpenTofu.</li>
+          <li>Integrated OpenTofu into <strong>GitHub Actions</strong> CI/CD workflows for <code>tofu fmt</code>, <code>tofu validate</code>, and automated <code>plan</code>/<code>apply</code> stages.</li>
+          <li>Used <strong>Azure Storage</strong> as the OpenTofu remote backend for <strong>state locking</strong>, versioning, and secure collaboration.</li>
+          <li>Designed infrastructure as <strong>modular, reusable code</strong> using DRY principles to simplify multi-environment deployments.</li>
+          <li>Secured secrets with <strong>Azure Key Vault</strong> and masked sensitive output using <code>sensitive = true</code> attributes in modules.</li>
+          <li>Assisted in <strong>transitioning from Terraform to OpenTofu</strong>, minimizing impact while gaining license flexibility and community-driven improvements.</li>
+        </ul>
+      </div>
+      
+    </main>
+  
+    <footer>
+      <div class="footer-content">
+        <div class="footer-links">
+          <a href="https://github.com/manuravikumar" target="_blank">
+            <img src="images/github-logo.png" alt="GitHub" class="icon"> GitHub
+          </a>
+          |
+          <a href="https://linkedin.com/in/manu-ravikumar" target="_blank">
+            <img src="images/linkedin-logo.png" alt="LinkedIn" class="icon"> LinkedIn
+          </a>
+        </div>
+      </div>
+    </footer>
+  
+  </body>
+  </html>
+  
