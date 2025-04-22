@@ -350,6 +350,14 @@ body {
   transition: background-color 0.3s ease;
 }
 
+.tab-content.aws i {
+  color: #f59e0b; /* warm amber yellow */
+}
+
+.tab-btn.aws {
+  background-color: #fef9c3;
+  color: #92400e;
+}
 .tab-btn:hover,
 .tab-btn.active {
   background-color: #0078d4;
