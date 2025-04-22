@@ -28,7 +28,7 @@
   <main class="content-section">
     <section class="section-header">
       <h2><i class="fab fa-aws"></i> AWS Cloud Expertise</h2>
-      <p>Tap into focused topics below to explore specific areas of my work in Azure cloud engineering.</p>
+      <p>Tap into focused topics below to explore specific areas of my work in AWS cloud engineering.</p>
     </section>
   
     <div class="tab-container">
@@ -36,7 +36,7 @@
         <button class="tab-btn aws active" data-tab="tab1">EC2</button>
         <button class="tab-btn aws" data-tab="tab2">IAM</button>
         <button class="tab-btn aws" data-tab="tab3">CloudWatch</button>
-        <button class="tab-btn aws" data-tab="tab4">IaC (Terraform)</button>
+        <button class="tab-btn aws" data-tab="tab4">CI/CD</button>
       </div>
   
       <div class="tab-content aws active" id="tab1">
@@ -52,6 +52,52 @@
           <li>Monitored instances using <strong>CloudWatch metrics</strong>, <strong>status checks</strong>, and <strong>custom alarms</strong>.</li>
           <li>Leveraged <strong>AWS Systems Manager (SSM)</strong> for remote management, patching, and inventory tracking.</li>
           <li>Backed up instances via <strong>EBS snapshots</strong> and applied <strong>lifecycle policies</strong> for storage optimization.</li>
+        </ul>
+      </div>
+      <div class="tab-content aws" id="tab2">
+        <i class="fas fa-user-shield"></i>
+        <h3>AWS Identity and Access Management (IAM)</h3>
+        <p>Enforcing secure, scalable, and automated access control across AWS environments.</p>
+        <ul class="tab-list">
+          <li>Designed and maintained <strong>IAM policies, roles, users, and groups</strong> to uphold least-privilege access principles.</li>
+          <li>Authored custom <strong>IAM policies in JSON</strong> to define fine-grained, resource-level permissions.</li>
+          <li>Assigned IAM roles to <strong>EC2, Lambda, ECS</strong>, and other services for scoped identity-based access.</li>
+          <li>Automated IAM provisioning and policy attachment via <strong>Terraform</strong> for CI/CD and IaC workflows.</li>
+          <li>Enabled <strong>SAML 2.0 federation</strong> using Entra ID (Azure AD) as an identity provider for seamless access.</li>
+          <li>Enforced <strong>MFA</strong> for privileged accounts and implemented access key rotation policies.</li>
+          <li>Monitored and audited access using <strong>CloudTrail</strong>, <strong>Access Analyzer</strong>, and <strong>IAM credential reports</strong>.</li>
+          <li>Implemented <strong>tag-based access control</strong> and governance using policy conditions and automation.</li>
+        </ul>
+      </div>
+      <div class="tab-content aws" id="tab3">
+        <i class="fas fa-chart-line"></i>
+        <h3>Amazon CloudWatch</h3>
+        <p>Comprehensive observability and proactive alerting across AWS infrastructure and applications.</p>
+        <ul class="tab-list">
+          <li>Configured <strong>Amazon CloudWatch</strong> for real-time monitoring, logging, and alerting across services like <strong>EC2, RDS, Lambda, and ECS</strong>.</li>
+          <li>Set up <strong>CloudWatch Alarms</strong> for CPU, memory, disk, and latency metrics with automated notifications and remediation triggers.</li>
+          <li>Collected and analyzed logs via <strong>CloudWatch Logs</strong> to troubleshoot issues and maintain audit trails.</li>
+          <li>Built custom <strong>CloudWatch Dashboards</strong> to visualize performance trends, service health, and KPIs.</li>
+          <li>Integrated CloudWatch with <strong>AWS SNS</strong> and <strong>Lambda functions</strong> for event-driven alerting and self-healing workflows.</li>
+          <li>Implemented <strong>metric filters, log retention policies, and cross-account log ingestion</strong> for unified observability and compliance.</li>
+          <li>Utilized <strong>CloudWatch Logs Insights</strong> for advanced querying and anomaly detection in high-volume log data.</li>
+          <li>Monitored application uptime and user journeys with <strong>CloudWatch Synthetics</strong> and <strong>ServiceLens</strong> for end-to-end visibility.</li>
+        </ul>
+      </div>
+      
+      <div class="tab-content aws" id="tab4">
+        <i class="fas fa-code-branch"></i>
+        <h3>CI/CD on AWS</h3>
+        <p>Automating infrastructure and application delivery with scalable, secure pipelines.</p>
+        <ul class="tab-list">
+          <li>Designed and implemented end-to-end <strong>CI/CD pipelines</strong> using <strong>Bitbucket, Jenkins, and Terraform</strong> for automated deployments.</li>
+          <li>Integrated Jenkins with <strong>EC2, S3, CodeDeploy, and CloudFormation</strong> to orchestrate cloud-native deployment workflows.</li>
+          <li>Reduced deployment times by <strong>35%</strong> through pipeline optimization—parallel stages, caching, and event-driven triggers.</li>
+          <li>Configured <strong>Bitbucket Pipelines</strong> for pre-deployment code validation, linting, and static analysis to maintain code quality.</li>
+          <li>Adopted <strong>infrastructure-as-code</strong> and <strong>blue/green deployment</strong> strategies to ensure zero-downtime releases.</li>
+          <li>Secured secrets using <strong>AWS Secrets Manager</strong> and Jenkins credentials store for safe credential management.</li>
+          <li>Monitored pipelines with <strong>CloudWatch metrics</strong>, Jenkins dashboards, and <strong>Slack notifications</strong> for real-time visibility.</li>
+          <li>Enforced <strong>branch protection, PR approvals</strong>, and implemented <strong>automated rollback</strong> for fault-tolerant delivery.</li>
         </ul>
       </div>
       
