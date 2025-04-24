@@ -31,21 +31,6 @@ resource "azurerm_monitor_diagnostic_setting" "resume_cdn_logs" {
     category = "CDNRequests"
   }
 
-  metric {
-    category = "CDNCache"
-  }
-
-  metric {
-    category = "CDNBandwidth"
-  }
-
-  metric {
-    category = "CDNCacheHit"
-  }
-
-  metric {
-    category = "CDNCacheMiss"
-  }
 
 
 }
