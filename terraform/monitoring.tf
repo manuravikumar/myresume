@@ -6,7 +6,12 @@ resource "azurerm_log_analytics_workspace" "resume_logs" {
   retention_in_days   = 30
 }
 
-# Diagnostic settings for the Storage Account (Blob logs)
+# 👉 Blob service-specific resource (needed for logging)
+data "azurerm_storage_account_blob_service_properties" "blob_props" {
+  storage_account_id = azurerm_storage_account.resume.id
+}
+
+# ✅ Diagnostic settings for Blob logging
 resource "azurerm_monitor_diagnostic_setting" "resume_blob_logs" {
   name                       = "diag-storage-resume"
   target_resource_id         = data.azurerm_storage_account_blob_service_properties.blob_props.id
@@ -14,6 +19,7 @@ resource "azurerm_monitor_diagnostic_setting" "resume_blob_logs" {
 
   enabled_log {
     category = "StorageBlobLogs"
+
     retention_policy {
       enabled = false
     }
@@ -21,13 +27,14 @@ resource "azurerm_monitor_diagnostic_setting" "resume_blob_logs" {
 
   metric {
     category = "Transaction"
+
     retention_policy {
       enabled = false
     }
   }
 }
 
-# Diagnostic settings for the CDN Endpoint
+# ✅ Diagnostic settings for CDN Endpoint
 resource "azurerm_monitor_diagnostic_setting" "resume_cdn_logs" {
   name                       = "diag-cdn-resume"
   target_resource_id         = azurerm_cdn_endpoint.resume_cdn_endpoint.id
@@ -35,6 +42,7 @@ resource "azurerm_monitor_diagnostic_setting" "resume_cdn_logs" {
 
   enabled_log {
     category = "AzureCdnAccessLog"
+
     retention_policy {
       enabled = false
     }
@@ -42,8 +50,11 @@ resource "azurerm_monitor_diagnostic_setting" "resume_cdn_logs" {
 
   enabled_log {
     category = "AzureCdnPerformanceLog"
+
     retention_policy {
       enabled = false
     }
   }
+
+  # Removed metrics block (not supported)
 }
