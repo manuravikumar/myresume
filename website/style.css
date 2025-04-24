@@ -417,11 +417,10 @@ body {
 .social-icon {
   width: 32px;
   height: 32px;
-  color: #333;
-  transition: transform 0.3s ease, color 0.3s ease;
+  transition: transform 0.3s ease;
 }
 
 .social-icon:hover {
   transform: scale(1.1);
-  color: #0073b1; /* Adjust color on hover if desired */
 }
+
