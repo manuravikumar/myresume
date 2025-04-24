@@ -477,7 +477,8 @@ html {
 
 .tech-carousel-track {
   display: flex;
-  flex-wrap: nowrap;
+  width: max-content;
+  animation: scroll-horizontal 30s linear infinite;
 }
 
 .tech-carousel-group {
