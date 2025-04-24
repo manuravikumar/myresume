@@ -411,6 +411,8 @@ body {
 .social-links {
   margin-top: 1rem;
   display: flex;
+  justify-content: center;
+  align-items: center;
   gap: 1rem;
 }
 
