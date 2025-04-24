@@ -51,4 +51,36 @@ document.addEventListener("DOMContentLoaded", function () {
     isDragging = false;
   });
 
+
+  
+});
+
+
+document.addEventListener("DOMContentLoaded", () => {
+  const visitorEl = document.getElementById("visitor-logs");
+
+  fetch("https://resume-visitor-api.azurewebsites.net/api/visitors")
+    .then(res => res.json())
+    .then(data => {
+      // Check if AzureDiagnostics is present
+      const logs = data?.tables?.[0]?.rows || [];
+
+      if (logs.length === 0) {
+        visitorEl.innerText = "No visitor logs found.";
+        return;
+      }
+
+      // Example: show top 5 visits (timestamp + IP if available)
+      const html = logs.slice(0, 5).map(log => {
+        const timestamp = new Date(log[0]).toLocaleString();
+        const ip = log[5] || "N/A";
+        return `<li>${timestamp} - IP: ${ip}</li>`;
+      }).join("");
+
+      visitorEl.innerHTML = `<ul>${html}</ul>`;
+    })
+    .catch(err => {
+      console.error("Visitor fetch error:", err);
+      visitorEl.innerText = "Failed to load visitor data.";
+    });
 });
