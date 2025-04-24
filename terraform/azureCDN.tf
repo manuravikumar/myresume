@@ -7,18 +7,16 @@ resource "azurerm_cdn_profile" "resume_cdn" {
 
 resource "azurerm_cdn_endpoint" "resume_cdn_endpoint" {
   name                = "cdnendpoint-resume"
+  resource_group_name = azurerm_resource_group.resume.name
   profile_name        = azurerm_cdn_profile.resume_cdn.name
   location            = azurerm_resource_group.resume.location
-  resource_group_name = azurerm_resource_group.resume.name
 
-origin {
-  name                = "blobstaticorigin"
-  host_name           = "manuresumestorageacct.z8.web.core.windows.net"
-  
-}
+  origin {
+    name      = "origin-resume"
+    host_name = azurerm_storage_account.resume.primary_web_endpoint
+  }
 
-
-  is_http_allowed  = false
+ 
   is_https_allowed = true
 }
 
