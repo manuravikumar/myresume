@@ -14,9 +14,7 @@ resource "azurerm_monitor_diagnostic_setting" "resume_blob_logs" {
 
  
 
-enabled_log {
-    category = "AuditEvent"
-  }
+
 
   metric {
     category = "AllMetrics"
