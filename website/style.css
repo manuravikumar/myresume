@@ -458,31 +458,40 @@ html {
   padding: 2rem 1rem;
   text-align: center;
   background: #f9f9f9;
-  overflow: hidden;
+  position: relative;
+}
+
+.tech-carousel-controls {
+  position: relative;
+  display: flex;
+  align-items: center;
 }
 
 .tech-carousel-wrapper {
-  height: 300px;
   overflow: hidden;
+  width: 100%;
   position: relative;
 }
 
 .tech-carousel-track {
   display: flex;
-  flex-direction: column;
-  animation: scroll-vertical 20s linear infinite;
+  width: max-content;
+  animation: scroll-horizontal 25s linear infinite;
 }
 
 .tech-carousel-group {
   display: flex;
-  flex-direction: column;
 }
 
 .homepage-tech-item {
+  min-width: 180px;
+  margin: 0 1rem;
   padding: 1rem;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
+  background: white;
+  border-radius: 12px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+  transition: transform 0.3s ease;
+  text-align: center;
 }
 
 .homepage-tech-item img {
@@ -490,11 +499,52 @@ html {
   margin-bottom: 0.5rem;
 }
 
-@keyframes scroll-vertical {
+.homepage-tech-item:hover {
+  transform: scale(1.05);
+}
+
+.carousel-btn {
+  background: #fff;
+  border: 1px solid #ccc;
+  border-radius: 50%;
+  padding: 0.5rem 1rem;
+  font-size: 1.5rem;
+  cursor: pointer;
+  z-index: 2;
+}
+
+.carousel-btn:hover {
+  background: #eee;
+}
+
+@keyframes scroll-horizontal {
   0% {
-    transform: translateY(0%);
+    transform: translateX(0%);
   }
   100% {
-    transform: translateY(-50%);
+    transform: translateX(-50%);
   }
 }
+
+/* Pause on hover */
+.tech-carousel-wrapper:hover .tech-carousel-track {
+  animation-play-state: paused;
+}
+
+/* Mobile swipe support */
+@media (max-width: 768px) {
+  .tech-carousel-track {
+    animation: none;
+    overflow-x: auto;
+    scroll-snap-type: x mandatory;
+  }
+
+  .homepage-tech-item {
+    scroll-snap-align: start;
+  }
+
+  .carousel-btn {
+    display: none;
+  }
+}
+
