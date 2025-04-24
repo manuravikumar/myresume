@@ -12,12 +12,7 @@ resource "azurerm_monitor_diagnostic_setting" "resume_blob_logs" {
   target_resource_id         = azurerm_storage_account.resume.id
   log_analytics_workspace_id = azurerm_log_analytics_workspace.resume_logs.id
 
-  enabled_log {
-    category = "StorageRead"
-    retention_policy {
-      enabled = false
-    }
-  }
+ 
 
   enabled_log {
     category = "StorageWrite"
@@ -61,10 +56,4 @@ resource "azurerm_monitor_diagnostic_setting" "resume_cdn_logs" {
     }
   }
 
-  metric {
-    category = "AllMetrics"
-    retention_policy {
-      enabled = false
-    }
-  }
 }

@@ -468,15 +468,16 @@ html {
 }
 
 .tech-carousel-wrapper {
-  overflow: hidden;
+  overflow-x: auto;
+  overflow-y: hidden;
+  -webkit-overflow-scrolling: touch;
+  scroll-behavior: smooth;
   width: 100%;
-  position: relative;
 }
 
 .tech-carousel-track {
   display: flex;
-  width: max-content;
-  animation: scroll-horizontal 25s linear infinite;
+  flex-wrap: nowrap;
 }
 
 .tech-carousel-group {
@@ -484,13 +485,9 @@ html {
 }
 
 .homepage-tech-item {
-  min-width: 180px;
-  margin: 0 1rem;
-  padding: 1rem;
-  background: white;
-  border-radius: 12px;
-  box-shadow: 0 4px 12px rgba(0,0,0,0.05);
-  transition: transform 0.3s ease;
+  flex: 0 0 auto;
+  width: 150px; /* or use clamp for responsiveness */
+  margin-right: 1rem;
   text-align: center;
 }
 

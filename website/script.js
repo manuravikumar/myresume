@@ -28,3 +28,27 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   });
 });
+document.addEventListener("DOMContentLoaded", function () {
+
+  let startX = 0;
+  let isDragging = false;
+
+  const wrapper = document.querySelector('.tech-carousel-wrapper');
+
+  wrapper.addEventListener('touchstart', (e) => {
+    startX = e.touches[0].clientX;
+    isDragging = true;
+  });
+
+  wrapper.addEventListener('touchmove', (e) => {
+    if (!isDragging) return;
+    const deltaX = startX - e.touches[0].clientX;
+    wrapper.scrollLeft += deltaX;
+    startX = e.touches[0].clientX;
+  });
+
+  wrapper.addEventListener('touchend', () => {
+    isDragging = false;
+  });
+
+});
