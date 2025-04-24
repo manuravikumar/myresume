@@ -11,13 +11,10 @@ resource "azurerm_cdn_endpoint" "resume_cdn_endpoint" {
   location            = azurerm_resource_group.resume.location
   resource_group_name = azurerm_resource_group.resume.name
 
- origin {
-  name      = "blobstaticorigin"
-  host_name = replace(
-    replace(azurerm_storage_account.resume.primary_web_endpoint, "https://", ""),
-    "/",
-    ""
-  )
+origin {
+  name              = "blobstaticorigin"
+  host_name         = "manuresumestorageacct.z8.web.core.windows.net"
+  
 }
 
 
