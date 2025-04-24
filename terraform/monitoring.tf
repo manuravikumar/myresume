@@ -21,17 +21,6 @@ resource "azurerm_monitor_diagnostic_setting" "resume_blob_logs" {
   }
 }
 
-# ✅ Diagnostic settings for the CDN Endpoint (log categories specific to CDN)
-resource "azurerm_monitor_diagnostic_setting" "resume_cdn_logs" {
-  name                       = "diag-cdn-resume"
-  target_resource_id         = azurerm_cdn_endpoint.resume_cdn_endpoint.id
-  log_analytics_workspace_id = azurerm_log_analytics_workspace.resume_logs.id
-
- enabled_log {
-    category = "CDNRequests"
-  }
 
 
-
-}
 
