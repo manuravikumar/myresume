@@ -6,20 +6,28 @@ resource "azurerm_log_analytics_workspace" "resume_logs" {
   retention_in_days   = 30
 }
 
-# 🔧 Create blob service resource (required for diagnostic setting)
-resource "azurerm_storage_blob_service_properties" "blob_service" {
-  storage_account_id = azurerm_storage_account.resume.id
-}
-
-# ✅ Diagnostic settings for Blob logging
+# ✅ Diagnostic settings for the Storage Account (Blob-specific logs)
 resource "azurerm_monitor_diagnostic_setting" "resume_blob_logs" {
   name                       = "diag-storage-resume"
-  target_resource_id         = azurerm_storage_blob_service_properties.blob_service.id
+  target_resource_id         = azurerm_storage_account.resume.id
   log_analytics_workspace_id = azurerm_log_analytics_workspace.resume_logs.id
 
   enabled_log {
-    category = "StorageBlobLogs"
+    category = "StorageRead"
+    retention_policy {
+      enabled = false
+    }
+  }
 
+  enabled_log {
+    category = "StorageWrite"
+    retention_policy {
+      enabled = false
+    }
+  }
+
+  enabled_log {
+    category = "StorageDelete"
     retention_policy {
       enabled = false
     }
@@ -27,14 +35,13 @@ resource "azurerm_monitor_diagnostic_setting" "resume_blob_logs" {
 
   metric {
     category = "Transaction"
-
     retention_policy {
       enabled = false
     }
   }
 }
 
-# ✅ Diagnostic settings for CDN Endpoint
+# ✅ Diagnostic settings for the CDN Endpoint (log categories specific to CDN)
 resource "azurerm_monitor_diagnostic_setting" "resume_cdn_logs" {
   name                       = "diag-cdn-resume"
   target_resource_id         = azurerm_cdn_endpoint.resume_cdn_endpoint.id
@@ -42,7 +49,20 @@ resource "azurerm_monitor_diagnostic_setting" "resume_cdn_logs" {
 
   enabled_log {
     category = "AzureCdnAccessLog"
+    retention_policy {
+      enabled = false
+    }
+  }
 
+  enabled_log {
+    category = "AzureCdnPerformanceLog"
+    retention_policy {
+      enabled = false
+    }
+  }
+
+  metric {
+    category = "AllMetrics"
     retention_policy {
       enabled = false
     }
