@@ -14,25 +14,12 @@ resource "azurerm_monitor_diagnostic_setting" "resume_blob_logs" {
 
  
 
-  enabled_log {
-    category = "StorageWrite"
-    retention_policy {
-      enabled = false
-    }
-  }
-
-  enabled_log {
-    category = "StorageDelete"
-    retention_policy {
-      enabled = false
-    }
+enabled_log {
+    category = "AuditEvent"
   }
 
   metric {
-    category = "Transaction"
-    retention_policy {
-      enabled = false
-    }
+    category = "AllMetrics"
   }
 }
 
@@ -42,18 +29,12 @@ resource "azurerm_monitor_diagnostic_setting" "resume_cdn_logs" {
   target_resource_id         = azurerm_cdn_endpoint.resume_cdn_endpoint.id
   log_analytics_workspace_id = azurerm_log_analytics_workspace.resume_logs.id
 
-  enabled_log {
-    category = "AzureCdnAccessLog"
-    retention_policy {
-      enabled = false
-    }
+ enabled_log {
+    category = "AuditEvent"
   }
 
-  enabled_log {
-    category = "AzureCdnPerformanceLog"
-    retention_policy {
-      enabled = false
-    }
+  metric {
+    category = "AllMetrics"
   }
 
 }
