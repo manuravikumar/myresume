@@ -78,7 +78,7 @@ jobs:
         
       - name: Zip and deploy to Azure Functions
         uses: Azure/functions-action@v1
-         with:
+        with:
             app-name: resume-visitor-api
             package: ./api
             scm-do-build-during-deployment: false
