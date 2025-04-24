@@ -6,15 +6,15 @@ resource "azurerm_log_analytics_workspace" "resume_logs" {
   retention_in_days   = 30
 }
 
-# 👉 Blob service-specific resource (needed for logging)
-data "azurerm_storage_account_blob_service_properties" "blob_props" {
+# 🔧 Create blob service resource (required for diagnostic setting)
+resource "azurerm_storage_blob_service_properties" "blob_service" {
   storage_account_id = azurerm_storage_account.resume.id
 }
 
 # ✅ Diagnostic settings for Blob logging
 resource "azurerm_monitor_diagnostic_setting" "resume_blob_logs" {
   name                       = "diag-storage-resume"
-  target_resource_id         = data.azurerm_storage_account_blob_service_properties.blob_props.id
+  target_resource_id         = azurerm_storage_blob_service_properties.blob_service.id
   log_analytics_workspace_id = azurerm_log_analytics_workspace.resume_logs.id
 
   enabled_log {
@@ -47,14 +47,4 @@ resource "azurerm_monitor_diagnostic_setting" "resume_cdn_logs" {
       enabled = false
     }
   }
-
-  enabled_log {
-    category = "AzureCdnPerformanceLog"
-
-    retention_policy {
-      enabled = false
-    }
-  }
-
-  # Removed metrics block (not supported)
 }
