@@ -1,0 +1,14 @@
+{
+    "name": "visitor-log-api",
+    "version": "1.0.0",
+    "description": "Azure Function to query CDN logs and expose them via HTTP",
+    "main": "index.js",
+    "scripts": {
+      "start": "func start"
+    },
+    "dependencies": {
+      "@azure/identity": "^4.0.0",
+      "@azure/monitor-query": "^1.2.0"
+    }
+  }
+  

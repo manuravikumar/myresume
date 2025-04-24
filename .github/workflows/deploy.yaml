@@ -71,3 +71,10 @@ jobs:
           ./deploy.sh
         env:
           AZURE_STORAGE_KEY: ${{ secrets.AZURE_STORAGE_KEY }}
+      
+      - name: Deploy Azure Function
+        uses: Azure/functions-action@v1
+        with:
+            app-name: resume-visitor-api
+            package: './api'
+        
