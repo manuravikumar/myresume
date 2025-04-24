@@ -31,8 +31,6 @@ resource "azurerm_monitor_diagnostic_setting" "resume_cdn_logs" {
     category = "AuditEvent"
   }
 
-  metric {
-    category = "AllMetrics"
-  }
+
 
 }
