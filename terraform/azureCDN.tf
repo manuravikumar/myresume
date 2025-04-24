@@ -14,9 +14,8 @@ resource "azurerm_cdn_endpoint" "resume_cdn_endpoint" {
 origin {
   name                = "blobstaticorigin"
   host_name           = "manuresumestorageacct.z8.web.core.windows.net"
-  origin_host_header  = "manuresumestorageacct.z8.web.core.windows.net"
+  
 }
-
 
 
   is_http_allowed  = false
