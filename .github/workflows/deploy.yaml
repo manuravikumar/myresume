@@ -76,12 +76,9 @@ jobs:
         run: npm ci
         working-directory: ./api
         
-      - name: Zip and deploy to Azure Functions
-        uses: Azure/functions-action@v1
-        with:
-            app-name: resume-visitor-api
-            package: ./api
-            scm-do-build-during-deployment: false
-            enable-oryx-build: false
-            respect-funcignore: false
+      - name: Deploy Azure Function from inside api/
+        working-directory: ./api
+        run: |
+          func azure functionapp publish resume-visitor-api --no-build
+      
         
