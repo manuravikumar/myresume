@@ -25,7 +25,7 @@ resource "azurerm_linux_function_app" "resume_api" {
 
   site_config {
     application_stack {
-      node_version = "20"
+      node_version = "18"
     }
     cors {
       allowed_origins = [
