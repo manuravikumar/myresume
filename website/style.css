@@ -426,3 +426,27 @@ body {
   transform: scale(1.1);
 }
 
+/*style for positioning arrow*/
+.down-arrow {
+  display: inline-block;
+  margin-top: 2rem;
+  animation: bounce 2s infinite;
+  cursor: pointer;
+}
+
+.down-arrow img {
+  width: 24px;
+  height: 24px;
+}
+
+@keyframes bounce {
+  0%, 20%, 50%, 80%, 100% {
+    transform: translateY(0);
+  }
+  40% {
+    transform: translateY(8px);
+  }
+  60% {
+    transform: translateY(4px);
+  }
+}
