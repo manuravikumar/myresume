@@ -28,12 +28,25 @@ resource "azurerm_monitor_diagnostic_setting" "resume_cdn_logs" {
   log_analytics_workspace_id = azurerm_log_analytics_workspace.resume_logs.id
 
  enabled_log {
-        category = "AuditEvent"
+    category = "CDNRequests"
+  }
 
-        retention_policy {
-            days    = 0
-            enabled = false
-        }
+  metric {
+    category = "CDNCache"
+  }
+
+  metric {
+    category = "CDNBandwidth"
+  }
+
+  metric {
+    category = "CDNCacheHit"
+  }
+
+  metric {
+    category = "CDNCacheMiss"
+  }
+
 
 }
-}
+
