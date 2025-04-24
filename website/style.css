@@ -454,49 +454,47 @@ html {
   scroll-behavior: smooth;
 }
 /*home page css*/
-
-.homepage-intro {
-  max-width: 800px;
-  margin: 0 auto;
+.homepage-tech-carousel {
   padding: 2rem 1rem;
   text-align: center;
+  background: #f9f9f9;
+  overflow: hidden;
 }
 
-.homepage-intro a {
-  color: #007acc;
-  font-weight: 500;
-  text-decoration: underline;
+.tech-carousel-wrapper {
+  height: 300px;
+  overflow: hidden;
+  position: relative;
 }
 
-.homepage-tech {
-  background-color: #f9f9f9;
-  padding: 3rem 1rem;
+.tech-carousel-track {
+  display: flex;
+  flex-direction: column;
+  animation: scroll-vertical 20s linear infinite;
 }
 
-.homepage-tech-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-  gap: 2rem;
-  max-width: 1200px;
-  margin: 0 auto;
-  padding: 2rem 0;
+.tech-carousel-group {
+  display: flex;
+  flex-direction: column;
 }
 
 .homepage-tech-item {
-  background: white;
-  border-radius: 12px;
-  box-shadow: 0 4px 12px rgba(0,0,0,0.05);
-  padding: 1.5rem;
-  text-align: center;
-  transition: transform 0.3s ease;
+  padding: 1rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 
-.homepage-tech-item:hover {
-  transform: translateY(-4px);
+.homepage-tech-item img {
+  width: 48px;
+  margin-bottom: 0.5rem;
 }
 
-.homepage-tech-logo {
-  width: 64px;
-  height: auto;
-  margin-bottom: 1rem;
+@keyframes scroll-vertical {
+  0% {
+    transform: translateY(0%);
+  }
+  100% {
+    transform: translateY(-50%);
+  }
 }
