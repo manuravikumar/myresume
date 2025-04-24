@@ -25,7 +25,13 @@ resource "azurerm_linux_function_app" "resume_api" {
 
   site_config {
     application_stack {
-      node_version = "18"
+      node_version = "20"
+    }
+    cors {
+      allowed_origins = [
+        "https://manuresumestorageacct.z8.web.core.windows.net"
+      ]
+      support_credentials = false
     }
   }
 
