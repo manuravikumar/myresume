@@ -8,8 +8,8 @@ module.exports = async function (context, req) {
   const workspaceId = "587a2689-7f12-4f89-9b1b-4b2b3d346263";
 
   const query = `
-    AzureCdnAccessLog
-    | where TimeGenerated > ago(1d)
+    AzureDiagnostics
+    | where Category == "AzureCdnAccessLog"
     | summarize total_hits = count()
   `;
 
