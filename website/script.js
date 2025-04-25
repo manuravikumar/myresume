@@ -55,29 +55,18 @@ document.addEventListener("DOMContentLoaded", function () {
   
 });
 
-
 document.addEventListener("DOMContentLoaded", () => {
   const visitorEl = document.getElementById("visitor-logs");
 
   fetch("https://resume-visitor-api.azurewebsites.net/api/visitors")
     .then(res => res.json())
     .then(data => {
-      // Check if AzureDiagnostics is present
-      const logs = data?.tables?.[0]?.rows || [];
-
-      if (logs.length === 0) {
-        visitorEl.innerText = "No visitor logs found.";
+      if (!data.visitors && data.visitors !== 0) {
+        visitorEl.innerText = "No visitor data found.";
         return;
       }
 
-      // Example: show top 5 visits (timestamp + IP if available)
-      const html = logs.slice(0, 5).map(log => {
-        const timestamp = new Date(log[0]).toLocaleString();
-        const ip = log[5] || "N/A";
-        return `<li>${timestamp} - IP: ${ip}</li>`;
-      }).join("");
-
-      visitorEl.innerHTML = `<ul>${html}</ul>`;
+      visitorEl.innerHTML = `<p>Total visitors (last 24h): <strong>${data.visitors}</strong></p>`;
     })
     .catch(err => {
       console.error("Visitor fetch error:", err);
