@@ -29,31 +29,31 @@ document.addEventListener('DOMContentLoaded', () => {
   });
 });
 document.addEventListener("DOMContentLoaded", function () {
+  const wrapper = document.querySelector('.tech-carousel-wrapper');
+  const track = document.querySelector('.tech-carousel-track');
 
   let startX = 0;
   let isDragging = false;
 
-  const wrapper = document.querySelector('.tech-carousel-wrapper');
-
   wrapper.addEventListener('touchstart', (e) => {
+    track.style.animationPlayState = 'paused'; // pause auto scroll
     startX = e.touches[0].clientX;
     isDragging = true;
   });
 
   wrapper.addEventListener('touchmove', (e) => {
     if (!isDragging) return;
-    const deltaX = startX - e.touches[0].clientX;
-    wrapper.scrollLeft += deltaX;
+    const deltaX = e.touches[0].clientX - startX;
+    wrapper.scrollLeft -= deltaX;
     startX = e.touches[0].clientX;
   });
 
   wrapper.addEventListener('touchend', () => {
     isDragging = false;
+    track.style.animationPlayState = 'running'; // resume scroll
   });
-
-
-  
 });
+
 
 document.addEventListener("DOMContentLoaded", () => {
   const visitorEl = document.getElementById("visitor-logs");

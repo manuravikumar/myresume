@@ -468,17 +468,17 @@ html {
 }
 
 .tech-carousel-wrapper {
-  overflow-x: auto;
+  overflow-x: hidden; /* Hidden here because we are auto-animating */
   overflow-y: hidden;
-  -webkit-overflow-scrolling: touch;
-  scroll-behavior: smooth;
   width: 100%;
+  position: relative;
 }
 
 .tech-carousel-track {
   display: flex;
   width: max-content;
   animation: scroll-horizontal 30s linear infinite;
+  will-change: transform; /* Helps smoother animations */
 }
 
 .tech-carousel-group {
