@@ -1,32 +1,53 @@
-# myresume
-Welcome to **myresume**! This project is designed to help you get to know about me and the tech i use.
+🏗️ Architecture Overview
+Static Website: Hosted in an Azure Blob Storage container configured for static site hosting.
 
-## Features
-- Create a professional resume in minutes.
-- Customize sections like education, experience, and skills.
-- Export your resume in multiple formats (PDF, Word, etc.).
-- Responsive design for mobile and desktop.
+Content Delivery: Served via Azure CDN for fast, global delivery.
 
-## Installation
-1. Clone the repository:
-    ```bash
-    git clone https://github.com/yourusername/myresume.git
-    ```
-2. Navigate to the project directory:
-    ```bash
-    cd myresume
-    ```
-3. Install dependencies:
-    ```bash
-    npm install
-    ```
+Infrastructure as Code: Entire Azure infrastructure is provisioned and managed via Terraform.
 
-## Usage
-1. Start the development server:
-    ```bash
-    npm start
-    ```
-2. Open your browser and navigate to `http://localhost:3000`.
+Visitor Tracking:
+
+Azure Function App is deployed to count site visits.
+
+Function queries Log Analytics data to track visitors.
+
+Custom Domain: Website is mapped to a custom domain managed through GoDaddy.
+
+🛠️ Tech Stack
+Azure Storage (Static Website Hosting)
+
+Azure CDN (Performance and Caching)
+
+Azure Functions (Serverless visitor tracking API)
+
+Azure Monitor (Log Analytics Workspace)
+
+Terraform (Infrastructure as Code)
+
+GoDaddy (Domain Name Management)
+
+.
+├── api/                    # Azure Function (Node.js)
+│   ├── visitors/            # Visitor tracking function
+│   ├── package.json         # NPM dependencies
+│   └── host.json            # Function app config
+├── website/                 # Static website files (HTML, CSS, JS, images)
+│   └── index.html
+│   └── script.js            # Calls visitor API
+├── terraform/               # Terraform files to deploy Azure infrastructure
+│   ├── main.tf
+│   ├── variables.tf
+│   └── outputs.tf
+├── README.md                # This file
+
+How Visitor Tracking Works
+When someone visits the website, a JavaScript fetch request is made to the Azure Function API.
+
+The Azure Function queries Log Analytics to count total CDN requests.
+
+The visitor count is dynamically displayed on the resume site.
+
+
 
 ## Contributing
 Contributions are welcome! Please follow these steps:
