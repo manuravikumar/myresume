@@ -26,27 +26,27 @@ Terraform (Infrastructure as Code)
 
 GoDaddy (Domain Name Management)
 
-.
-├── api/                     # Azure Function (Node.js)
-│   ├── visitors/            # Visitor tracking function
-│   ├── package.json         # NPM dependencies
-│   └── host.json            # Function app config
-├── website/                 # Static website files (HTML, CSS, JS, images)
-│   └── index.html
-│   └── script.js            # Calls visitor API
-├── terraform/               # Terraform files to deploy Azure infrastructure
-│   ├── main.tf
-│   ├── variables.tf
-│   └── outputs.tf
-├── README.md                # This file
-
+               
 **How Visitor Tracking Works**
 
 When someone visits the website, a JavaScript fetch request is made to the Azure Function API.
 The Azure Function queries Log Analytics to count total CDN requests.
 The visitor count is dynamically displayed on the resume site.
 
+**🌐 Live Site**
 
+Website URL: manuravikumar-cloudengineer.com
+
+Visitor API URL: https://resume-visitor-api.azurewebsites.net/api/visitors
+
+**📖 Notes**
+Blob Storage must have public access enabled for static website files.
+
+CDN is configured to pull content from the Azure Storage static site endpoint.
+
+Log Analytics must have AzureCdnAccessLog category enabled.
+
+Azure Function uses DefaultAzureCredential for authentication.
 
 ## Contributing
 
@@ -69,5 +69,5 @@ Contributions are welcome! Please follow these steps:
 ## License
 This project is licensed under the [MIT License](LICENSE).
 
-## Contact
-For questions or feedback, feel free to reach out at your-email@example.com.
+📬 Contact
+If you like this project or have any feedback, feel free to connect with me on LinkedIn. www.linkedin.com/in/manu-ravikumar
