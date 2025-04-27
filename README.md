@@ -1,19 +1,19 @@
-🏗️ Architecture Overview
+**🏗️ Architecture Overview**
+
 Static Website: Hosted in an Azure Blob Storage container configured for static site hosting.
 
 Content Delivery: Served via Azure CDN for fast, global delivery.
 
 Infrastructure as Code: Entire Azure infrastructure is provisioned and managed via Terraform.
 
-Visitor Tracking:
-
-Azure Function App is deployed to count site visits.
+Visitor Tracking: Azure Function App is deployed to count site visits.
 
 Function queries Log Analytics data to track visitors.
 
 Custom Domain: Website is mapped to a custom domain managed through GoDaddy.
 
-🛠️ Tech Stack
+**🛠️ Tech Stack**
+
 Azure Storage (Static Website Hosting)
 
 Azure CDN (Performance and Caching)
@@ -27,7 +27,7 @@ Terraform (Infrastructure as Code)
 GoDaddy (Domain Name Management)
 
 .
-├── api/                    # Azure Function (Node.js)
+├── api/                     # Azure Function (Node.js)
 │   ├── visitors/            # Visitor tracking function
 │   ├── package.json         # NPM dependencies
 │   └── host.json            # Function app config
@@ -40,16 +40,16 @@ GoDaddy (Domain Name Management)
 │   └── outputs.tf
 ├── README.md                # This file
 
-How Visitor Tracking Works
+**How Visitor Tracking Works**
+
 When someone visits the website, a JavaScript fetch request is made to the Azure Function API.
-
 The Azure Function queries Log Analytics to count total CDN requests.
-
 The visitor count is dynamically displayed on the resume site.
 
 
 
 ## Contributing
+
 Contributions are welcome! Please follow these steps:
 1. Fork the repository.
 2. Create a new branch:
